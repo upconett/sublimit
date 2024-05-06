@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <title>Test Page</title>
+</head>
+<body>
+    <div class="lvl-1">
+        <div class="lvl-2">
+            <div class="place-together">
+                <div class="text">
+                    <h1 class="white-text">Here is a white text</h1>
+                    <h2 class="gray-text">And here is a gray text</h2>
+                    <h3 class="black-text">Some boring black text here</h3>
+                </div>
+                <div class="pointing-finger">
+                    <img class="icon" src="{% static 'pointing-finger.png' %}" alt="An Image there!">
+                    <h4 class="gray-text">Oh, an image I see!</h4>
+                </div>
+                <img class="img" style="margin-left: auto;" src="https://source.unsplash.com/random/600x110" alt="random picture">
+            </div>
+            <div class="lvl-3">
+                <button class="btn">I'm a button</button>
+                <button class="btn">Me too!</button>
+                <button class="btn">Me too!</button>
+                <button class="btn">Me too!</button>
+                <button class="btn">Me too!</button>
+                <input class="inp" type="text" placeholder="I'm an input">
+                <input class="inp" type="text" placeholder="Oh wow, really?">
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .place-together {
+            display: flex;
+            justify-content: space-between;
+            gap: 1em;
+            margin-bottom: 1em;
+        }
+
+        .pointing-finger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 30%;
+            img {
+                width: 5em;
+                rotate: 10deg;
+            }
+        }
+    </style>
+
+</body>
+</html>
