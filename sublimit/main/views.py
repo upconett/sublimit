@@ -10,10 +10,10 @@ from user.models import User, Article
 def redirector(request: HttpRequest):
     if request.method == "GET":
         try:
-            email, username, password = get_auth_cookies(request)
+            username, email, password = get_auth_cookies(request)
             User.objects.get(
-                email=email, 
-                username=username, 
+                username=username,
+                email=email,
                 password=password
                 )
             return redirect('/home/')
@@ -38,8 +38,18 @@ def login(request: HttpRequest):
         return render(request, 'auth/login.html')
 
     elif request.method == "POST":
-        pass
+        try:
+            email, password = get_auth_login(request)
+            user = User.objects.get(
+                email=email,
+                password=password
+            )
+            response = HttpResponseRedirect('/home/')
+            response = set_auth_cookies(response, user)
+            return response
 
+        except User.DoesNotExist:
+            return render(request, 'auth/login.html', {'error': 'invalid email or password'})
     else:
         return Http404()
 

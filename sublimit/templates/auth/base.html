@@ -11,14 +11,14 @@
 <body>
     <main>
         <section class="auth-block">
+            {% if error %}
+                <h3 class="white-text">{{error}}</h3>
+            {% endif %}
             <form action="{% block form_action %}{% endblock %}" method="POST">
                 {% csrf_token %}
                 {% block doodle %}{% endblock %}
                 {% block form_inputs %}
                 {% endblock %}
-                {% if error %}
-                    <h3 class="white-text">{{error.message}}</h3>
-                {% endif %}
                 <input class="btn" type="submit" 
                     value="{% block submit_value %}{% endblock %}">
                 {% block redirect %}{% endblock %}

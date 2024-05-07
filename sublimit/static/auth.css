@@ -20,7 +20,12 @@
     margin-top: 35vh;
     font-size: 1.2em;
 
-    width: 14em;
+    width: 15em;
+
+    h3 {
+        font-family: sans-serif;
+        margin: 1em 0; 
+    }
 
     form {
         font-size: inherit;
@@ -29,7 +34,6 @@
         align-items: center;
         gap: .5em;
 
-        h3 { margin: 0 }
 
         input {
             font-size: inherit;
@@ -46,7 +50,7 @@
     #doodle-login {
         position: absolute;
         z-index: 0;
-        right: 11.1em;
+        right: 12.1em;
         rotate: 20deg;
         bottom: 1.3em;
         transform: scaleX(-1);
