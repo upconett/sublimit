@@ -60,7 +60,7 @@
     #doodle-register {
         position: absolute;
         z-index: 0;
-        right: 12em;
+        right: 13em;
         rotate: 80deg;
         bottom: 2em;
         transform: scaleY(-1);
