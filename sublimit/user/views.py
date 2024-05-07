@@ -10,5 +10,9 @@ def show_user(request: HttpRequest):
     pass
 
 
+def follow_user(request: HttpRequest):
+    pass
+
+
 def settings(request: HttpRequest):
     pass
