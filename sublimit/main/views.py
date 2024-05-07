@@ -1,8 +1,8 @@
 from django.http import *
 from django.shortcuts import render, redirect
 
-from sublimit.utility.functions import *
-from sublimit.utility.exceptions import *
+from utility.functions import *
+from utility.exceptions import *
 
 
 def redirector(request: HttpRequest):

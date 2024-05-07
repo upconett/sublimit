@@ -1,6 +1,6 @@
 from django.http import *
 
-from utility.exceptions import InvalidCookie
+from .exceptions import InvalidCookie
 
 
 def get_auth_cookies(request: HttpRequest) -> tuple[str, str, str]:
