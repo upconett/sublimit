@@ -1,3 +1,10 @@
+from django.http import *
 from django.shortcuts import render
 
-# Create your views here.
+
+def redirector(request: HttpRequest):
+    pass
+
+
+def show_user(request: HttpRequest):
+    pass
