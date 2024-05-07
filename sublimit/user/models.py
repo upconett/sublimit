@@ -2,8 +2,8 @@ from django.db import models
 
 
 class User(models.Model):
-    email: models.EmailField = models.EmailField()
     username: models.CharField = models.CharField(max_length=20, unique=True)
+    email: models.EmailField = models.EmailField()
     password: models.CharField = models.CharField(max_length=35)
     avatar: models.ImageField = models.ImageField(null=True)
 
