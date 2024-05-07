@@ -8,3 +8,7 @@ def redirector(request: HttpRequest):
 
 def show_user(request: HttpRequest):
     pass
+
+
+def settings(request: HttpRequest):
+    pass
