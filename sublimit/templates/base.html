@@ -6,10 +6,24 @@
     <link rel="shortcut icon" href="{% static 'logo.png' %}" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'base.css' %}">
+    {% block head %}{% endblock %}
     <title>{% block title %}{% endblock %}</title>
 </head>
 <body>
     <header>
+        <div class="logo">
+            <img class="icon" src="{% static 'logo.png' %}" alt="logo">
+            <h1 class="white-text">sublimit</h1>
+            <nav>
+                <ul>
+                    <li><a class="btn" href="/user/">profile</a></li>
+                    <li><a class="btn" href="/forum/">forum</a></li>
+                    <li><a class="btn active" href="/home/">home</a></li>
+                    <li><a class="btn" href="/rules/">rules</a></li>
+                    <li><a class="btn" href="/about/">about</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
     <main>
         {% block main %}

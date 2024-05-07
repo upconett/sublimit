@@ -1,1 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+{% endblock %}
+
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <section class="lvl-1 search">
+        <form action="/search/" method="POST">
+            {% csrf_token %}
+            <input class="inp" type="text" placeholder="search">
+            <input class="icon" type="image" src="{% static 'search.svg' %}" alt="search">
+        </form>
+    </section>
+    <section class="wrapper">
+        <div class="lvl-1 left">
+            <h1 class="white-text">topics</h1>
+            <div class="topics">
+                <a class="btn" href="">physics</a>
+                <a class="btn" href="">frontend</a>
+                <a class="btn" href="">backend</a>
+                <a class="btn" href="">UI/UX</a>
+                <a class="btn" href="">amazon</a>
+            </div>
+        </div>
+        <div class="lvl-1 right">
+            <div class="lvl-2 welcome">
+                <h1 class="black-text">Welcome to the forum!</h1>
+                <img class="img" src="{% static 'cat.png' %}" alt="cat">
+            </div>
+        </div>
+    </section>
+{% endblock %}
