@@ -1,0 +1,81 @@
+.cut-1 { 
+    width: 85%; 
+}
+
+.cut-2 { 
+    position: relative;
+    left: 10%;
+    width: 83.5%;
+}
+
+.cut-3 {
+    position: relative;
+    left: -5%;
+}
+
+.auth-block {
+    display: block;
+    position: relative;
+    margin: auto;
+    margin-top: 35vh;
+    font-size: 1.2em;
+
+    width: 14em;
+
+    form {
+        font-size: inherit;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: .5em;
+
+        h3 { margin: 0 }
+
+        input {
+            font-size: inherit;
+            z-index: 1;
+        }
+        
+        .btn {
+            margin-top: .5em;
+            width: 83%;
+        }
+
+    }
+
+    #doodle-login {
+        position: absolute;
+        z-index: 0;
+        right: 11.1em;
+        rotate: 20deg;
+        bottom: 1.3em;
+        transform: scaleX(-1);
+        width: 12em;
+    }
+
+    #doodle-register {
+        position: absolute;
+        z-index: 0;
+        right: 12em;
+        rotate: 80deg;
+        bottom: 2em;
+        transform: scaleY(-1);
+        width: 8em;
+    }
+
+    a {
+        color: gray;
+        padding-left: 3em;
+    }
+}
+
+
+@keyframes popup {
+    0% {
+        font-size: 0;
+    }
+    100% {
+        font-size: .8em;
+    }
+}
+

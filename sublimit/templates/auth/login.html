@@ -1,0 +1,21 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+
+{% block title %}Login{% endblock %}
+
+{% block form_action %}/login/{% endblock %}
+
+{% block form_inputs %}
+    <input class="inp cut-1" name="email" type="email" placeholder="email" required="true">
+    <input class="inp cut-2" name="password" type="password" placeholder="password" required="true">
+{% endblock %}
+
+{% block submit_value %}login{% endblock %}
+
+{% block doodle %}
+    <img id="doodle-login" src="{% static 'tentacle.png' %}" alt="doodle">
+{% endblock %}
+
+{% block redirect %}
+<a href="/register/">new to sublimit?</a>
+{% endblock %}

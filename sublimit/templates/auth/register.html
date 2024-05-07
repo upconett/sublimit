@@ -1,0 +1,22 @@
+{% extends 'auth/base.html' %}
+{% load static %}
+
+{% block title %}Register{% endblock %}
+
+{% block form_action %}/register/{% endblock %}
+
+{% block form_inputs %}
+    <input class="inp cut-1" name="username" type="text" placeholder="username" required="true">
+    <input class="inp cut-2" name="email" type="email" placeholder="email" required="true">
+    <input class="inp cut-3" name="password" type="password" placeholder="password" required="true">
+{% endblock %}
+
+{% block submit_value %}register{% endblock %}
+
+{% block doodle %}
+    <img id="doodle-register" src="{% static 'grass.png' %}" alt="doodle">
+{% endblock %}
+
+{% block redirect %}
+<a href="/login/">already have an account?</a>
+{% endblock %}

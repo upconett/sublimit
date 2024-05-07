@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'auth.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <main>
+        <section class="auth-block">
+            <form action="{% block form_action %}{% endblock %}" method="POST">
+                {% csrf_token %}
+                {% block doodle %}{% endblock %}
+                {% block form_inputs %}
+                {% endblock %}
+                {% if error %}
+                    <h3 class="white-text">{{error.message}}</h3>
+                {% endif %}
+                <input class="btn" type="submit" 
+                    value="{% block submit_value %}{% endblock %}">
+                {% block redirect %}{% endblock %}
+            </form>
+        </section>
+    </main>
+</body>
+</html>
