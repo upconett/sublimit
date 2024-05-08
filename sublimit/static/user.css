@@ -1,0 +1,62 @@
+.bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+
+    .avatar {
+        background-repeat: no-repeat;
+        background-size: cover;
+        img {
+            display: block;
+            margin: auto;
+            width: 10em; 
+        }
+        .username {
+            font-size: 4em;
+            text-align: center;
+        }
+    }
+
+    .about {
+        width: 50%;
+        margin: auto;
+        p {
+            margin: 0;
+        }
+    }
+    .contacts {
+        width: 30%;
+        min-width: 20em;
+        margin: auto;
+        display: flex;
+        flex-direction: column;
+        gap: .2em;
+
+        h2 {
+            text-align: center;
+            margin: 0;
+        }
+    }
+
+}
+
+.articles {
+        .no-article {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            h1 {
+                position: absolute;
+                font-size: 7em;
+                top: .3em;
+                z-index: 0;
+            }
+
+            img {
+                width: 12em;
+                z-index: 1;
+            }
+        }
+    }

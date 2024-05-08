@@ -1,3 +1,9 @@
+.inset {
+    padding: 1em;
+    border-radius: 1em;
+    box-shadow: -.15em .15em .5em inset rgba(0,0,0,0.3);
+}
+
 .lvl-1 {
     padding: 1em;
     border-radius: 1em;
@@ -80,6 +86,11 @@
     outline: none;
     background: none;
     filter: drop-shadow(-.2em .2em .2em rgba(0,0,0,0.3));
+}
+
+.avatar img{
+    border-radius: 100em;
+    box-shadow: -.2em .2em .7em rgba(0,0,0,0.5);
 }
 
 header { 

@@ -20,19 +20,16 @@ def redirector(request: HttpRequest):
 
 def show_user(request: HttpRequest, username: str):
     if request.method == "GET":
-        if username:
             try:
+                me = validate_user(request)
                 user = User.objects.get(username=username)
-                return render(request, 'user/profile.html', {'user': user})
-            except User.DoesNotExist: return Http404()
-
-        else:
-            try:
-                user = validate_user(request)
-                return render(request, 'user/my_profile.html', {'user': user})
-
-            except InvalidCookie: return Http404()
-            except User.DoesNotExist: return Http404()
+                if me == user:
+                    return render(request, 'user/my_profile.html', {'user': user, 'contacts': ['github']})
+                else:
+                    return render(request, 'user/profile.html', {'user': user, 'contacts': ['github']})
+                
+            except InvalidCookie: return redirect('/login/')
+            except User.DoesNotExist: return redirect('/login/')
 
     else:
         return Http404()

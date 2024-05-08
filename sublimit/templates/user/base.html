@@ -1,6 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 
+{% block head %}
+    <link rel="stylesheet" href="{% static 'user.css' %}">
+{% endblock %}
+
+{% block profile-class %}active{% endblock %}
+
 {% block main %}
-    <div class="lvl-1 wrapper">User's site here</div>
+    <section class="lvl-1 bio">
+        <div class="inset avatar" style="background-image: url('https://source.unsplash.com/random/1980x400?mountain');">
+            <img src="{% static 'default-avatar.png' %}" alt="avatar">
+            <h1 class="white-text username">{{user.username}}</h1>
+        </div>
+        <div class="inset about">
+            <p class="gray-text">
+                {% if user.about %}
+                    {{user.about}}
+                {% else %}
+                    {% block about-placeholder %}{% endblock %}
+                {% endif %}
+            </p>
+        </div>
+        <div class="lvl-2 contacts">
+            <h2 class="gray-text">Contacts</h2>
+            {% for c in contacts %}
+                <div class="contact">
+                    <a class="black-text" href="{{c.link}}">{{c.title}}</a>
+                </div>
+            {% endfor %}
+
+        </div>
+    </section>
+    <section class="lvl-1 articles">
+        {% if articles %}
+            {% for a in articles %}
+                <div class="article">
+                    <h4 class="title">{{ a.title }}</h4>
+                    <h5 class="short">{{ a.short }}</h5>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="no-article">
+                <h1 class="white-text">{% block no-articles-placeholder %}{% endblock %}</h1>
+                <img src="{% static 'hole.png' %}" alt="no-articles">
+            </div>
+        {% endif %}
+    </section>
 {% endblock %}
