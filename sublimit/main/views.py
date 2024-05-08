@@ -26,23 +26,6 @@ def redirector(request: HttpRequest):
         return Http404()
 
 
-def home(request: HttpRequest):
-    if request.method == "GET":
-        try:
-            username, email, password = get_auth_cookies(request)
-            User.objects.get(
-                username=username,
-                email=email,
-                password=password
-                )
-            return render(request, 'home/home.html')
-
-        except InvalidCookie: return redirect('/login/')
-        except User.DoesNotExist: return redirect('/login/')
-    else:
-        return Http404()
-
-
 def login(request: HttpRequest):
     if request.method == "GET":
         return render(request, 'auth/login.html')
@@ -84,5 +67,56 @@ def register(request: HttpRequest):
         except IntegrityError:
             return render(request, 'auth/register.html', {'error': 'username already taken'})
 
+    else:
+        return Http404()
+
+
+def home(request: HttpRequest):
+    if request.method == "GET":
+        try:
+            username, email, password = get_auth_cookies(request)
+            User.objects.get(
+                username=username,
+                email=email,
+                password=password
+                )
+            return render(request, 'main/home.html')
+
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
+    else:
+        return Http404()
+
+
+def rules(request: HttpRequest):
+    if request.method == 'GET':
+        try:
+            username, email, password = get_auth_cookies(request)
+            User.objects.get(
+                username=username,
+                email=email,
+                password=password
+                )
+            return render(request, 'main/rules.html')
+
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
+    else:
+        return Http404()
+
+
+def about(request: HttpRequest):
+    if request.method == 'GET':
+        try:
+            username, email, password = get_auth_cookies(request)
+            User.objects.get(
+                username=username,
+                email=email,
+                password=password
+                )
+            return render(request, 'main/about.html')
+
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
     else:
         return Http404()
