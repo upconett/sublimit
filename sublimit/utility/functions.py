@@ -39,3 +39,12 @@ def set_auth_cookies(response: HttpResponseRedirect, user: User) -> HttpResponse
     response.set_signed_cookie('email', user.email)
     response.set_signed_cookie('password', user.password)
     return response
+
+
+def validate_user(request: HttpRequest) -> User:
+    username, email, password = get_auth_cookies(request)
+    return User.objects.get(
+        username=username,
+        email=email,
+        password=password
+        )

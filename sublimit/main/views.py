@@ -11,12 +11,7 @@ from user.models import User, Article
 def redirector(request: HttpRequest):
     if request.method == "GET":
         try:
-            username, email, password = get_auth_cookies(request)
-            User.objects.get(
-                username=username,
-                email=email,
-                password=password
-                )
+            validate_user(request)
             return redirect('/home/')
 
         except InvalidCookie: return redirect('/login/')
@@ -59,7 +54,6 @@ def register(request: HttpRequest):
                 email=email,
                 password=password
             )
-            user.save()
             response = HttpResponseRedirect('/home/')
             response = set_auth_cookies(response, user)
             return response
@@ -74,12 +68,7 @@ def register(request: HttpRequest):
 def home(request: HttpRequest):
     if request.method == "GET":
         try:
-            username, email, password = get_auth_cookies(request)
-            User.objects.get(
-                username=username,
-                email=email,
-                password=password
-                )
+            validate_user(request)
             return render(request, 'main/home.html')
 
         except InvalidCookie: return redirect('/login/')
@@ -91,12 +80,7 @@ def home(request: HttpRequest):
 def rules(request: HttpRequest):
     if request.method == 'GET':
         try:
-            username, email, password = get_auth_cookies(request)
-            User.objects.get(
-                username=username,
-                email=email,
-                password=password
-                )
+            validate_user(request)
             return render(request, 'main/rules.html')
 
         except InvalidCookie: return redirect('/login/')
@@ -108,12 +92,7 @@ def rules(request: HttpRequest):
 def about(request: HttpRequest):
     if request.method == 'GET':
         try:
-            username, email, password = get_auth_cookies(request)
-            User.objects.get(
-                username=username,
-                email=email,
-                password=password
-                )
+            validate_user(request)
             return render(request, 'main/about.html')
 
         except InvalidCookie: return redirect('/login/')
