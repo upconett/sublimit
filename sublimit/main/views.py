@@ -9,17 +9,12 @@ from user.models import User
 from .models import *
 
 
+@validate_user
 def redirector(request: HttpRequest):
     if request.method == "GET":
-        try:
-            validate_user(request)
-            return redirect('/home/')
-
-        except InvalidCookie: return redirect('/login/')
-        except User.DoesNotExist: return redirect('/login/')
-
+        return redirect('/home/')
     else:
-        return Http404()
+        raise Http404()
 
 
 def login(request: HttpRequest):
@@ -40,7 +35,7 @@ def login(request: HttpRequest):
         except User.DoesNotExist:
             return render(request, 'auth/login.html', {'error': 'invalid email or password'})
     else:
-        return Http404()
+        raise Http404()
 
 
 def register(request: HttpRequest):
@@ -63,40 +58,28 @@ def register(request: HttpRequest):
             return render(request, 'auth/register.html', {'error': 'username already taken'})
 
     else:
-        return Http404()
+        raise Http404()
 
 
+@validate_user
 def home(request: HttpRequest):
     if request.method == "GET":
-        try:
-            validate_user(request)
-            return render(request, 'main/home.html')
-
-        except InvalidCookie: return redirect('/login/')
-        except User.DoesNotExist: return redirect('/login/')
+        return render(request, 'main/home.html')
     else:
-        return Http404()
+        raise Http404()
 
 
+@validate_user
 def rules(request: HttpRequest):
     if request.method == 'GET':
-        try:
-            validate_user(request)
-            return render(request, 'main/rules.html')
-
-        except InvalidCookie: return redirect('/login/')
-        except User.DoesNotExist: return redirect('/login/')
+        return render(request, 'main/rules.html')
     else:
-        return Http404()
+        raise Http404()
 
 
+@validate_user
 def about(request: HttpRequest):
     if request.method == 'GET':
-        try:
-            validate_user(request)
-            return render(request, 'main/about.html')
-
-        except InvalidCookie: return redirect('/login/')
-        except User.DoesNotExist: return redirect('/login/')
+        return render(request, 'main/about.html')
     else:
-        return Http404()
+        raise Http404()

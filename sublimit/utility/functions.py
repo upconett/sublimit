@@ -1,4 +1,5 @@
 from django.http import *
+from django.shortcuts import redirect
 
 from .exceptions import InvalidCookie
 
@@ -41,10 +42,27 @@ def set_auth_cookies(response: HttpResponseRedirect, user: User) -> HttpResponse
     return response
 
 
-def validate_user(request: HttpRequest) -> User:
+def validate_user(view_function):
+    '''Decorator that redirects to `/login/` if user is invalid'''
+    def wrapper(request: HttpRequest, *args, **kwargs):
+        try:
+            username, email, password = get_auth_cookies(request)
+            User.objects.get(
+                username=username,
+                email=email,
+                password=password
+            )
+            return view_function(request, *args, **kwargs)
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
+    return wrapper
+
+
+def get_user(request: HttpRequest) -> User:
+    '''Return User object found by cookies'''
     username, email, password = get_auth_cookies(request)
     return User.objects.get(
         username=username,
         email=email,
         password=password
-        )
+    )
