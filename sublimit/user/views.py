@@ -5,6 +5,7 @@ from utility.functions import *
 from utility.exceptions import *
 
 from .models import *
+from forum.models import Article
 
 
 def redirector(request: HttpRequest):
@@ -25,10 +26,14 @@ def show_user(request: HttpRequest, username: str):
             try:
                 me = validate_user(request)
                 user = User.objects.get(username=username)
+                articles = [x for x in Article.objects.filter(author=user)]
+                try: Follow.objects.get(follower=me, followed=user); followed = 'True'
+                except Follow.DoesNotExist: followed = 'False'
                 context = {
                     'user': user,
                     'contacts': ['github'],
-                    'followed': False,
+                    'articles': articles,
+                    'followed': followed,
                 }
                 if me == user:
                     return render(request, 'user/my_profile.html', context)

@@ -41,6 +41,9 @@
 }
 
 .articles {
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
     .no-article {
         position: relative;
         display: flex;
@@ -54,7 +57,32 @@
                 vertical-align: middle;
             }
         }
+    }
 
+    .article {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1em;
+
+        a {
+            margin-left: auto;
+            text-decoration: none;
+        }
+
+        .title {
+            width: fit-content;
+            white-space: nowrap;
+        }
+
+        .short {
+            width: 100%;
+        }
+        
+        h4,h5 {
+            margin: 0;
+        }
     }
 }
 

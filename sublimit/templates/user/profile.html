@@ -10,5 +10,5 @@ No about text provided by {{user.username}}
 {% endblock %}
 
 {% block buttons %}
-<button id="follow" class="btn {{followed}}" onclick="follow_user(`{{user.username}}`, `{{csrf_token}}`)">follow</button>
+<button id="follow" class="btn {{followed}}" onclick="follow_user(`{{user.username}}`, `{{csrf_token}}`)">{% if followed == 'True' %}unfollow{%else%}follow{%endif%}</button>
 {% endblock %}
