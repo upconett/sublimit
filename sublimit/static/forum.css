@@ -53,7 +53,22 @@
         .article {
             display: flex;
             flex-direction: row;
+            align-items: center;
             gap: 1em;
+            cursor: pointer;
+            text-decoration: none;
+
+            h2 {
+                margin: 0;
+            }
+
+            &:hover {
+                background-color: rgba(0,0,0,.03);
+            }
+
+            .author {
+                margin-left: auto;
+            }
         }
     }
 }

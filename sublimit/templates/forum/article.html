@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.title}}{% endblock %}
+
+{% block forum-class %}active{% endblock %}
+
+{% block main %}
+<div class="lvl-1 title"><h1>{{article.title}}</h1></div>
+<div class="lvl-1 text"><p>{{article.text}}</p></div>
+<div class="lvl-1 comments">
+    Comments here
+</div>
+{% endblock %}

@@ -4,6 +4,7 @@
 {% block head %}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{% static 'forum.css' %}">
+    <script src="{% static 'scripts/forum.js' %}"></script>
 {% endblock %}
 
 
@@ -32,7 +33,7 @@
         </div>
         <div class="lvl-1 right">
             {% for a in articles %}
-                <div class="lvl-2 article">
+                <div class="lvl-2 article" onclick="show_article(`{{a.id}}`)">
                     <h2 class="black-text title">{{a.title}}</h2>
                     <h2 class="white-text author">by <a href="/user/{{a.author.username}}/">{{a.author.username}}</a></h2>
                 </div>

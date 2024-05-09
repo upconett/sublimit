@@ -40,29 +40,39 @@ def new_article(request: HttpRequest):
         raise Http404()
 
 
-def show_article(request: HttpRequest):
+def show_article(request: HttpRequest, article_id: int):
+    if request.method == "GET":
+        try:
+            validate_user(request)
+            article = Article.objects.get(id=article_id)
+            return render(request, 'forum/article.html', {'article': article})
+
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
+    else:
+        raise Http404()
+
+
+
+def edit_article(request: HttpRequest, article_id: int):
     pass
 
 
-def edit_article(request: HttpRequest):
+def delete_article(request: HttpRequest, article_id: int):
     pass
 
 
-def delete_article(request: HttpRequest):
+def comment_article(request: HttpRequest, article_id: int):
     pass
 
 
-def comment_article(request: HttpRequest):
+def like_article(request: HttpRequest, article_id: int):
     pass
 
 
-def like_article(request: HttpRequest):
+def dislike_article(request: HttpRequest, article_id: int):
     pass
 
 
-def dislike_article(request: HttpRequest):
-    pass
-
-
-def star_article(request: HttpRequest):
+def star_article(request: HttpRequest, article_id: int):
     pass
