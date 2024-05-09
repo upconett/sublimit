@@ -1,1 +1,14 @@
 {% extends 'user/base.html' %}
+{% load static %}
+
+{% block about-placeholder %}
+No about text provided by {{user.username}}
+{% endblock %}
+
+{% block no-articles-placeholder %}
+{{user.username}} has <img src="{% static 'hole.png' %}" alt="no-articles"> articles...
+{% endblock %}
+
+{% block buttons %}
+<button id="follow" class="btn {{followed}}" onclick="follow_user(`{{user.username}}`, `{{csrf_token}}`)">follow</button>
+{% endblock %}

@@ -1,5 +1,10 @@
 {% extends 'user/base.html' %}
+{% load static %}
+
+{% block about-placeholder %}
+Here is supposed to be your about text
+{% endblock %}
 
 {% block no-articles-placeholder %}
-You have &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp articles...
+you have <img src="{% static 'hole.png' %}" alt="no-articles"> articles...
 {% endblock %}

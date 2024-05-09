@@ -15,7 +15,7 @@ def redirector(request: HttpRequest):
         except User.DoesNotExist: return redirect('/login/')
 
     else:
-        return Http404()
+        raise Http404()
 
 
 def show_user(request: HttpRequest, username: str):
@@ -23,29 +23,35 @@ def show_user(request: HttpRequest, username: str):
             try:
                 me = validate_user(request)
                 user = User.objects.get(username=username)
+                context = {
+                    'user': user,
+                    'contacts': ['github'],
+                    'followed': False,
+                }
                 if me == user:
-                    return render(request, 'user/my_profile.html', {'user': user, 'contacts': ['github']})
+                    return render(request, 'user/my_profile.html', context)
                 else:
-                    return render(request, 'user/profile.html', {'user': user, 'contacts': ['github']})
+                    return render(request, 'user/profile.html', context)
                 
             except InvalidCookie: return redirect('/login/')
             except User.DoesNotExist: return redirect('/login/')
 
     else:
-        return Http404()
+        raise Http404()
 
 
 def follow_user(request: HttpRequest, username: str):
     if request.method == "POST":
-        # try: me = validate_user(request)
-        # except InvalidCookie: return redirect('/login/')
-        # except User.DoesNotExist: return redirect('/login/')
+        try:
+            me = validate_user(request)
+            user = User.objects.get(username=username)
+            
 
-        # try: user = User.objects.get(username=username)
-        # except User.DoesNotExist: return redirect('')
-        pass
+        except InvalidCookie: return redirect('/login/')
+        except User.DoesNotExist: return redirect('/login/')
+
     else:
-        return Http404()
+        raise Http404()
 
 
 def settings(request: HttpRequest):
@@ -63,4 +69,4 @@ def settings(request: HttpRequest):
         # except User.DoesNotExist: return redirect('/login/')
         pass
     else:
-        return Http404()
+        raise Http404()

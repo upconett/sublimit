@@ -3,7 +3,10 @@
 
 {% block head %}
     <link rel="stylesheet" href="{% static 'user.css' %}">
+    <script src="{% static 'scripts/user.js' %}"></script>
 {% endblock %}
+
+{% block title %}{{user.username}}{% endblock %}
 
 {% block profile-class %}active{% endblock %}
 
@@ -22,15 +25,17 @@
                 {% endif %}
             </p>
         </div>
-        <div class="lvl-2 contacts">
+        <div class="buttons">
+            {% block buttons %}{% endblock %}
+        </div>
+        <!-- <div class="lvl-2 contacts">
             <h2 class="gray-text">Contacts</h2>
             {% for c in contacts %}
                 <div class="contact">
                     <a class="black-text" href="{{c.link}}">{{c.title}}</a>
                 </div>
             {% endfor %}
-
-        </div>
+        </div> -->
     </section>
     <section class="lvl-1 articles">
         {% if articles %}
@@ -42,8 +47,9 @@
             {% endfor %}
         {% else %}
             <div class="no-article">
-                <h1 class="white-text">{% block no-articles-placeholder %}{% endblock %}</h1>
-                <img src="{% static 'hole.png' %}" alt="no-articles">
+                <h1 class="white-text">
+                    {% block no-articles-placeholder %}{% endblock %}
+                </h1>
             </div>
         {% endif %}
     </section>
