@@ -34,3 +34,16 @@ class Article(models.Model):
     author = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
     title = models.CharField(max_length=100)
     text = models.TextField(max_length=10000)
+
+
+class Follow(models.Model):
+    follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(User, on_delete=models.CASCADE, related_name='followers')
+    
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(fields=['follower', 'followed'], name='unique_followship'),
+        ]
+
+    def __str__(self):
+        return f'{self.follower} follows {self.followed}'

@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from utility.functions import *
 from utility.exceptions import *
 
+from .models import *
+
 
 def redirector(request: HttpRequest):
     if request.method == "GET":
@@ -45,11 +47,26 @@ def follow_user(request: HttpRequest, username: str):
         try:
             me = validate_user(request)
             user = User.objects.get(username=username)
-            
+
+            try:
+                follow = Follow.objects.get(
+                    follower = me,
+                    followed = user
+                )
+                follow.delete()
+                context = '{ "followed": "False" }'
+                print('deleted', follow)
+            except Follow.DoesNotExist:
+                follow = Follow.objects.create(
+                    follower = me,
+                    followed = user
+                )
+                context = '{ "followed": "True" }'
+                print('created', follow)
+            return HttpResponse(context)
 
         except InvalidCookie: return redirect('/login/')
         except User.DoesNotExist: return redirect('/login/')
-
     else:
         raise Http404()
 
