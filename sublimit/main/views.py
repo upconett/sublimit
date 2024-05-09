@@ -5,7 +5,8 @@ from django.shortcuts import render, redirect
 from utility.functions import *
 from utility.exceptions import *
 
-from user.models import User, Article
+from user.models import User
+from .models import *
 
 
 def redirector(request: HttpRequest):

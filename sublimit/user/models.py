@@ -30,11 +30,6 @@ class Contact(models.Model):
         return f'{self.type}, {self.link}'
 
 
-class Article(models.Model):
-    author = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
-    title = models.CharField(max_length=100)
-    text = models.TextField(max_length=10000)
-
 
 class Follow(models.Model):
     follower = models.ForeignKey(User, on_delete=models.CASCADE, related_name='following')
