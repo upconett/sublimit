@@ -33,9 +33,9 @@
         </div>
         <div class="lvl-1 right">
             {% for a in articles %}
-                <div class="lvl-2 article" onclick="show_article(`{{a.id}}`)">
-                    <h2 class="black-text title">{{a.title}}</h2>
-                    <h2 class="white-text author">by <a href="/user/{{a.author.username}}/">{{a.author.username}}</a></h2>
+                <div class="article">
+                    <a class="btn black-text title" href="article/{{a.id}}">{{a.title}}</a>
+                    <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
                 </div>
             {% endfor %}
         </div>
