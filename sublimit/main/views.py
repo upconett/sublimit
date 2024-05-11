@@ -28,12 +28,23 @@ def login(request: HttpRequest):
                 email=email,
                 password=password
             )
-            response = HttpResponseRedirect('/home/')
+            response = HttpResponseRedirect('/forum/')
             response = set_auth_cookies(response, user)
             return response
 
         except User.DoesNotExist:
             return render(request, 'auth/login.html', {'error': 'invalid email or password'})
+    else:
+        raise Http404()
+
+
+def logout(request: HttpRequest):
+    if request.method == "GET":
+        response = HttpResponseRedirect('/login/')
+        response.delete_cookie('username')
+        response.delete_cookie('email')
+        response.delete_cookie('login')
+        return response
     else:
         raise Http404()
 
@@ -50,21 +61,13 @@ def register(request: HttpRequest):
                 email=email,
                 password=password
             )
-            response = HttpResponseRedirect('/home/')
+            response = HttpResponseRedirect('/forum/')
             response = set_auth_cookies(response, user)
             return response
 
         except IntegrityError:
             return render(request, 'auth/register.html', {'error': 'username already taken'})
 
-    else:
-        raise Http404()
-
-
-@validate_user
-def home(request: HttpRequest):
-    if request.method == "GET":
-        return render(request, 'main/home.html')
     else:
         raise Http404()
 
