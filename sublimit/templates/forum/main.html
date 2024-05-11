@@ -26,18 +26,19 @@
         <div class="lvl-1 left">
             <h1 class="white-text">topics</h1>
             <div class="topics">
-                <a class="btn" href="">physics</a>
-                <a class="btn" href="">frontend</a>
-                <a class="btn" href="">backend</a>
-                <a class="btn" href="">UI/UX</a>
-                <a class="btn" href="">amazon</a>
+                <a class="btn" href="?tag=physics">physics</a>
+                <a class="btn" href="?tag=fronted">frontend</a>
+                <a class="btn" href="?tag=backend">backend</a>
+                <a class="btn" href="?tag=uiux">UI/UX</a>
+                <a class="btn" href="?tag=amazon">amazon</a>
             </div>
         </div>
         <div class="lvl-1 right">
             {% for a in articles %}
                 <div class="article">
-                    <a class="btn black-text title" href="article/{{a.id}}">{{a.title}}</a>
+                    <a class="btn black-text title" href="article/{{a.id}}">{{a.title}}{% if a.tag %}<span class="white-text">{{a.tag}}</span>{% endif %}</a>
                     <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
+                    <a class="white-text" href="?tag={{a.tag}}"></a>
                 </div>
             {% endfor %}
         </div>

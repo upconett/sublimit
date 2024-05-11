@@ -12,11 +12,12 @@ from user.models import *
 def redirector(request: HttpRequest):
     if request.method == "GET":
         articles = []
-        for a in Article.objects.all()[:10]:
-            articles.append(a)
-        context = {
-            'articles': articles
-        }
+        tag = request.GET.get('tag', None)
+        if not tag: 
+            for a in Article.objects.all()[:10]: articles.append(a)
+        else: 
+            for a in Article.objects.filter(tag=tag)[:10]: articles.append(a)
+        context = { 'articles': articles }
         return render(request, 'forum/main.html', context)
 
     else:

@@ -73,5 +73,6 @@ def create_article(request: HttpRequest) -> Article:
     return Article.objects.create(
         author=get_user(request),
         title=request.POST.get('title'),
-        text=request.POST.get('text')
+        text=request.POST.get('text'),
+        tag=request.POST.get('tag')
     )
