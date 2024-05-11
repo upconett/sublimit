@@ -12,7 +12,7 @@ from .models import *
 @validate_user
 def redirector(request: HttpRequest):
     if request.method == "GET":
-        return redirect('/home/')
+        return redirect('/forum/')
     else:
         raise Http404()
 

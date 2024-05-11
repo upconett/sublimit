@@ -76,3 +76,14 @@ def create_article(request: HttpRequest) -> Article:
         text=request.POST.get('text'),
         tag=request.POST.get('tag')
     )
+
+
+def alter_article(request: HttpRequest) -> Article:
+    article = Article.objects.get(
+        id=request.POST.get('id'),
+    )
+    article.title=request.POST.get('title')
+    article.text=request.POST.get('text')
+    article.tag=request.POST.get('tag')
+    article.save()
+    return article

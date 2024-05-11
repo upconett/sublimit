@@ -4,4 +4,7 @@ $(document).ready(function () {
             marked.parse($(this).val())
         );
     })
+    $('.preview').html(
+        marked.parse($('#edit_field').val())
+    )
 })

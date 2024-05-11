@@ -26,19 +26,19 @@
         <div class="lvl-1 left">
             <h1 class="white-text">topics</h1>
             <div class="topics">
-                <a class="btn" href="?tag=physics">physics</a>
-                <a class="btn" href="?tag=fronted">frontend</a>
-                <a class="btn" href="?tag=backend">backend</a>
-                <a class="btn" href="?tag=uiux">UI/UX</a>
-                <a class="btn" href="?tag=amazon">amazon</a>
+                <a class="btn {% if tag == 'physics' %}active{% endif %}" href="?tag=physics">physics</a>
+                <a class="btn {% if tag == 'frontend' %}active{% endif %}" href="?tag=frontend">frontend</a>
+                <a class="btn {% if tag == 'backend' %}active{% endif %}" href="?tag=backend">backend</a>
+                <a class="btn {% if tag == 'uiux' %}active{% endif %}" href="?tag=uiux">UI/UX</a>
+                <a class="btn {% if tag == 'amazon' %}active{% endif %}" href="?tag=amazon">amazon</a>
             </div>
         </div>
         <div class="lvl-1 right">
             {% for a in articles %}
                 <div class="article">
                     <a class="btn black-text title" href="article/{{a.id}}">{{a.title}}{% if a.tag %}<span class="white-text">{{a.tag}}</span>{% endif %}</a>
+                    {% if a.author == user %} <a class="btn" href="article/{{a.id}}/edit/">✏️</a> {% endif %}
                     <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
-                    <a class="white-text" href="?tag={{a.tag}}"></a>
                 </div>
             {% endfor %}
         </div>

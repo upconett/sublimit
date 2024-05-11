@@ -17,7 +17,11 @@ def redirector(request: HttpRequest):
             for a in Article.objects.all()[:10]: articles.append(a)
         else: 
             for a in Article.objects.filter(tag=tag)[:10]: articles.append(a)
-        context = { 'articles': articles }
+        context = { 
+            'articles': articles,
+            'user': get_user(request),
+            'tag': tag
+            }
         return render(request, 'forum/main.html', context)
 
     else:
@@ -27,7 +31,7 @@ def redirector(request: HttpRequest):
 @validate_user
 def new_article(request: HttpRequest):
     if request.method == "GET":
-        return render(request, 'forum/edit.html')
+        return render(request, 'forum/edit.html', {'action': '/forum/article/new/'})
     elif request.method == "POST":
         article = create_article(request)
         return redirect(f'/forum/article/{article.id}/')
@@ -46,7 +50,14 @@ def show_article(request: HttpRequest, article_id: int):
 
 @validate_user
 def edit_article(request: HttpRequest, article_id: int):
-    pass
+    if request.method == "GET":
+        article = Article.objects.get(id=article_id)
+        return render(request, 'forum/edit.html', {'article': article, 'action': f'/forum/article/{article.id}/edit/'})
+    elif request.method == "POST":
+        article = alter_article(request)
+        return redirect(f'/forum/article/{article.id}/')
+    else:
+        raise Http404()
 
 
 @validate_user
