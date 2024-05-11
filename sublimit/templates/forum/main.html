@@ -36,8 +36,13 @@
             {% for a in articles %}
                 <div class="article">
                     <a class="btn black-text title" href="article/{{a.id}}">{{a.title}}{% if a.tag %}<span class="white-text">{{a.tag}}</span>{% endif %}</a>
-                    {% if a.author == user %} <a class="btn" href="article/{{a.id}}/edit/">✏️</a> {% endif %}
-                    <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
+                    {% if a.author == user %} 
+                        <a class="btn" href="article/{{a.id}}/edit/">✏️</a> 
+                        <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
+                        <a class="btn" href="article/{{a.id}}/delete/">️🗑️</a> 
+                    {% else %}
+                        <a class="btn white-text author" href="/user/{{a.author.username}}/">by {{a.author.username}}</a>
+                    {% endif %}
                 </div>
             {% endfor %}
         </div>

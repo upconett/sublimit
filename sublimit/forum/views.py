@@ -66,7 +66,11 @@ def edit_article(request: HttpRequest, article_id: int):
 
 @validate_user
 def delete_article(request: HttpRequest, article_id: int):
-    pass
+    if request.method == "GET":
+        Article.objects.get(id=article_id).delete()
+        return redirect(f'/forum/')
+    else:
+        raise Http404()
 
 
 @validate_user
