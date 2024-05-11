@@ -13,10 +13,14 @@ def redirector(request: HttpRequest):
     if request.method == "GET":
         articles = []
         tag = request.GET.get('tag', None)
-        if not tag: 
-            for a in Article.objects.all()[:10]: articles.append(a)
-        else: 
-            for a in Article.objects.filter(tag=tag)[:10]: articles.append(a)
+        search = request.GET.get('search', None)
+        if tag: 
+            for a in Article.objects.filter(tag=tag): articles.append(a)
+        elif search: 
+            for a in Article.objects.all(): 
+                if any(search in x for x in [a.title.lower(), a.text.lower(), a.author.username.lower()]): articles.append(a)
+        else:
+            for a in Article.objects.all(): articles.append(a)
         context = { 
             'articles': articles,
             'user': get_user(request),

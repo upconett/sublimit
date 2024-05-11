@@ -16,11 +16,10 @@
         <div class="lvl-1 buttons">
             <a class="btn" href="article/new/">new article ✏️</a>
         </div>
-        <form class="lvl-1 search" action="/search/" method="POST">
-            {% csrf_token %}
-            <input class="inp" type="text" placeholder="search">
-            <input class="icon" type="image" src="{% static 'search.svg' %}" alt="search">
-        </form>
+        <div class="lvl-1 search">
+            <input id="search-field"class="inp" type="text" placeholder="search">
+            <input id="search-btn" class="icon" type="image" src="{% static 'search.svg' %}" alt="search">
+        </div>
     </section>
     <section class="wrapper">
         <div class="lvl-1 left">
@@ -43,4 +42,11 @@
             {% endfor %}
         </div>
     </section>
+    <script>
+        $(document).ready(function() {
+            $('#search-btn').click(function() {
+                window.location.href=`?search=${$('#search-field').val()}`
+            })
+        })
+    </script>
 {% endblock %}
