@@ -1,7 +1,8 @@
 .inset {
     padding: 1em;
     border-radius: 1em;
-    box-shadow: -.15em .15em .5em inset rgba(0,0,0,0.3);
+    box-shadow: -.2em .2em .4em inset rgba(0,0,0,0.1);
+    outline: 1px solid rgba(0,0,0,0.1);
 }
 
 .lvl-1 {

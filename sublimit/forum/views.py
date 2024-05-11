@@ -25,7 +25,9 @@ def redirector(request: HttpRequest):
 
 @validate_user
 def new_article(request: HttpRequest):
-    if request.method == "POST":
+    if request.method == "GET":
+        return render(request, 'forum/edit.html')
+    elif request.method == "POST":
         pass
     else:
         raise Http404()

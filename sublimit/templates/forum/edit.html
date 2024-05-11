@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'forum.css' %}">
+    <script src="{% static 'scripts/forum.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+{% endblock %}
+
+{% block title %}new{% endblock %}
+
+{% block forum-class %}active{% endblock %}
+
+{% block main %}
+    <section class="lvl-1 wrapper">
+        <form action="/forum/article/new" method="POST">
+            {% csrf_token %}
+            <input class="inp" type="text" name="title" placeholder="title">
+            <div class="edit">
+                <textarea id="edit_field" class="inp" name="text" placeholder="write your text here" wrap="off" autofocus></textarea>
+                <div class="inset preview" class="inset"></div>
+            </div>
+            <div class="lvl-2 bottom">
+                <input class="inp tags"></input>
+                <input class="btn submit" type="submit" value="post">
+            </div>
+        </form>
+    </section>
+{% endblock %}

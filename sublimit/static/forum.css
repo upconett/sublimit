@@ -80,3 +80,38 @@
         }
     }
 }
+
+.wrapper form{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: .5em;
+
+    .edit {
+        display: flex;
+        flex-direction: row;
+        gap: .5em;
+        justify-content: space-evenly;
+
+        .inp {
+            overflow: hidden;
+            resize: none;
+            height: 35em;
+            width: 50%;
+        }
+        .preview {
+            border-radius: .5em;
+            width: 50%;
+        }
+    }
+
+    .bottom {
+        display: flex;
+        flex-direction: row;
+        gap: .5em;
+
+        .tags {
+            width: 100%;
+        }
+    }
+}
