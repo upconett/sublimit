@@ -4,6 +4,7 @@ from django.shortcuts import redirect
 from .exceptions import InvalidCookie
 
 from user.models import User
+from forum.models import Article
 
 
 def get_auth_cookies(request: HttpRequest) -> tuple[str, str, str]:
@@ -65,4 +66,12 @@ def get_user(request: HttpRequest) -> User:
         username=username,
         email=email,
         password=password
+    )
+
+
+def create_article(request: HttpRequest) -> Article:
+    return Article.objects.create(
+        author=get_user(request),
+        title=request.POST.get('title'),
+        text=request.POST.get('text')
     )

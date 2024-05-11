@@ -1,21 +1,41 @@
-.search {
-    padding: .6em;
-    form {
+.tab {
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+
+    .buttons {
         display: flex;
         flex-direction: row;
-        margin: 0;
-        gap: .6em;
+        justify-content: left;
+        width: fit-content;
+        padding: .5em;
+        a {
+            text-decoration: none;
+            padding: .3em;
+            white-space: nowrap;
+        }
+    }
 
-        .icon {
-            filter: invert(1) drop-shadow(-.1em .1em .2em rgba(0, 0, 0, 0.5));
-            width: 2.4em;
-        }
-        .icon:hover {
-            filter: invert(1) drop-shadow(-.05em .05em .1em rgba(0, 0, 0, 0.4));
-        }
-        .inp {
-            width: 100%;
-        }
+    
+}
+
+.search {
+    padding: .6em;
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    gap: .6em;
+    width: 100%;
+
+    .icon {
+        filter: invert(1) drop-shadow(-.1em .1em .2em rgba(0, 0, 0, 0.5));
+        width: 2.4em;
+    }
+    .icon:hover {
+        filter: invert(1) drop-shadow(-.05em .05em .1em rgba(0, 0, 0, 0.4));
+    }
+    .inp {
+        width: 100%;
     }
 }
 

@@ -28,7 +28,8 @@ def new_article(request: HttpRequest):
     if request.method == "GET":
         return render(request, 'forum/edit.html')
     elif request.method == "POST":
-        pass
+        article = create_article(request)
+        return redirect(f'/forum/article/{article.id}/')
     else:
         raise Http404()
 

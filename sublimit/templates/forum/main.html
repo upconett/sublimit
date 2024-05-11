@@ -12,8 +12,11 @@
 {% block forum-class %}active{% endblock %}
 
 {% block main %}
-    <section class="lvl-1 search">
-        <form action="/search/" method="POST">
+    <section class="tab">
+        <div class="lvl-1 buttons">
+            <a class="btn" href="article/new/">new article ✏️</a>
+        </div>
+        <form class="lvl-1 search" action="/search/" method="POST">
             {% csrf_token %}
             <input class="inp" type="text" placeholder="search">
             <input class="icon" type="image" src="{% static 'search.svg' %}" alt="search">

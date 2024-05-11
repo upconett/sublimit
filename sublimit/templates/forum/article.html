@@ -1,4 +1,11 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'forum.css' %}">
+    <script src="{% static 'scripts/forum.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+{% endblock %}
 
 {% block title %}{{article.title}}{% endblock %}
 
@@ -6,8 +13,13 @@
 
 {% block main %}
 <div class="lvl-1 title"><h1>{{article.title}}</h1></div>
-<div class="lvl-1 text"><p>{{article.text}}</p></div>
+<div class="lvl-1 text"></div>
 <div class="lvl-1 comments">
     Comments here
 </div>
+<script>
+    $(document).ready(function() {
+        $('.text').html(marked.parse(`{{article.text}}`))
+    })
+</script>
 {% endblock %}
