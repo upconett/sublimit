@@ -143,3 +143,37 @@
         }
     }
 }
+
+.title {
+    h1 {margin: 0;}
+}
+
+.comments {
+    display: flex;
+    padding: .3em;
+    border-radius: .5em;
+    flex-direction: column;
+    gap: .3em;
+
+    .comment {
+        padding: .3em;
+        border-radius: .3em;
+        display: flex;
+        flex-direction: row;
+        gap: .5em;
+        align-items: center;
+
+        p {
+            margin: 0;
+        }
+    }
+
+    form {
+        display: flex;
+        flex-direction: row;
+        gap: .5em;
+        .inp {
+            width: 100%;
+        }
+    }
+}

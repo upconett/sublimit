@@ -26,3 +26,9 @@ class Article(models.Model):
         choices=TAG_CHOICES,
         null=True
     )
+
+
+class Comment(models.Model):
+    author = models.ForeignKey("user.User", on_delete=models.CASCADE, null=True)
+    article = models.ForeignKey("Article", on_delete=models.CASCADE, null=True)
+    text = models.TextField(max_length=10000)

@@ -15,7 +15,18 @@
 <div class="lvl-1 title"><h1>{{article.title}}</h1></div>
 <div class="lvl-1 text"></div>
 <div class="lvl-1 comments">
-    Comments here
+    {% for c in comments %}
+        <div class="lvl-2 comment">
+            <a href="/user/{{c.author.username}}" class="author">{{c.author.username}}</a>
+            <p class="c-text">{{c.text}}</p>
+        </div>
+    {% endfor %}
+    {% if comments %} <hr> {% endif %}
+    <form action="/forum/article/{{article.id}}/comment" method="POST">
+        {% csrf_token %}
+        <input class="inp" type="text" name="text" placeholder="comments here" required>
+        <input class="btn" type="submit" value="comment">
+    </form>
 </div>
 <script>
     $(document).ready(function() {

@@ -47,7 +47,8 @@ def new_article(request: HttpRequest):
 def show_article(request: HttpRequest, article_id: int):
     if request.method == "GET":
         article = Article.objects.get(id=article_id)
-        return render(request, 'forum/article.html', {'article': article})
+        comments = [c for c in Comment.objects.filter(article=article)]
+        return render(request, 'forum/article.html', {'article': article, 'comments': comments})
     else:
         raise Http404()
 
@@ -74,8 +75,20 @@ def delete_article(request: HttpRequest, article_id: int):
 
 
 @validate_user
-def comment_article(request: HttpRequest, article_id: int):
-    pass
+def comment_add(request: HttpRequest, article_id: int):
+    if request.method == "POST":
+        user = get_user(request)
+        article = Article.objects.get(id = article_id)
+        Comment.objects.create(
+            author=user,
+            article=article,
+            text=request.POST.get('text')
+        )
+        return redirect(f"/forum/article/{article.id}")
+
+    else:
+        raise Http404()
+
 
 
 @validate_user
